@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="auth-wrapper">
+
+        <div class="auth-brand">
+            <div class="brand-block">
+                <img src="Logo-quiz.png" alt="Quizkoo logo" class="brand-logo" />
+                <h1>Quizkoo</h1>
+                <p>Play quizzes. Learn fast. Have fun.</p>
+            </div>
+        </div>
+
+        <div class="auth-container">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <input type="text" id="name" placeholder="Username" required />
+                <input type="email" id="email" placeholder="Email" required />
+                <input type="password" id="password" placeholder="Password" required />
+                <input type="password" id="repeatPassword" placeholder="Repeat Password" required />
+                <button type="submit">Register</button>
+            </form>
+
+            <p class="switch">
+                You have a profile already?
+                <a href="index.html">Login</a>
+            </p>
+
+            <p id="error"></p>
+        </div>
+
+    </div>
+    <script type="module" src="register.js"></script>
+</body>
+
+</html>

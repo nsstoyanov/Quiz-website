@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Quizzes</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/join.css">
+  <link rel="stylesheet" href="css/pages/solve.css">
+  <link rel="stylesheet" href="css/pages/edit.css">
+</head>
+
+<body>
+
+  <header class="top-bar">
+    <div class="top-left">
+      <button class="logo-btn" id="homeBtn">
+        <div class="logo">
+          <div class="logo-icon">
+            <img src="Logo-quiz.png" alt="QuizRun logo" />
+          </div>
+          <span class="logo-text">Quizkoo</span>
+        </div>
+      </button>
+
+      <nav class="nav">
+        <div class="solve-dropdown">
+          <button class=" nav-btn active" id="solveBtn" type="button">
+            <span class="icon">🧠</span> Solve
+          </button>
+
+          <div id="solveMenu" class="solve-menu hidden">
+            <button id="filterPublic" class="filter-btn active">
+              Public quizzes
+            </button>
+            <button id="filterMy" class="filter-btn">
+              My quizzes
+            </button>
+          </div>
+        </div>
+
+        <button class="nav-btn" data-view="edit">
+          <span class="icon">✏️</span> Edit
+        </button>
+      </nav>
+    </div>
+
+    <button id="logoutBtn" class="logout-btn">
+      <span class="icon">🚪</span> Logout
+    </button>
+  </header>
+
+  <main>
+    <section id="joinView" class="view">
+      <div class="join-card">
+        <h1 class="site-title">Quizkoo</h1>
+        <input id="gamePinInput" type="text" placeholder="Game PIN" maxlength="6" />
+        <button id = "joinByPinBtn" class="primary-btn">Join</button>
+        <p id="joinPinError" class="lobby-error hidden"></p>
+
+      </div>
+    </section>
+
+    <section id="solveView" class="view active">
+
+      <div id="solveList" class="solve-screen">
+        <div class="solve-container">
+
+          <div id="publicSection" class="solve-section">
+            <h2 class="solve-section-title">Public quizzes</h2>
+            <div id="publicQuizList" class="quiz-list"></div>
+          </div>
+
+          <div id="mySection" class="solve-section">
+            <h2 class="solve-section-title">My quizzes</h2>
+            <div id="myQuizList" class="quiz-list"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="solveLobby" class="solve-screen hidden">
+        <button id="backToSolveListBtn" class="back-btn">
+          ← Back to quizzes
+        </button>
+        <div class="lobby-card">
+          <div class="lobby-title-row">
+            <h2 id="lobbyQuizTitle"></h2>
+
+            <div class="lobby-pin hidden" id="gamePinDisplay">
+              PIN <strong id="gamePinValue"></strong>
+            </div>
+          </div>
+
+          <p id="lobbyQuizMeta"></p>
+
+          <div class="lobby-players">
+            <h3>Players</h3>
+            <div id="playerList"></div>
+          </div>
+          <p id="lobbyError" class="lobby-error hidden"></p>
+
+          <div class="lobby-join">
+            <input id="playerNameInput" placeholder="Enter your name" />
+            <button id="joinGameBtn" class="primary-btn">Join</button>
+          </div>
+
+          <button id="startGameBtn" class="primary-btn">
+            Start game
+          </button>
+
+          <button id="createPinBtn" class="primary-btn">
+            Create game PIN
+          </button>
+
+        </div>
+      </div>
+      <div id="solveCountdown" class="solve-screen hidden">
+        <div class="countdown-card">
+          <h1 id="countdownQuizTitle"></h1>
+          <div id="countdownNumber">3</div>
+        </div>
+      </div>
+      <div id="solveQuestion" class="solve-screen hidden">
+        <div class="question-card">
+
+          <h2 id="questionText"></h2>
+
+          <img id="questionImage" class="question-image hidden" alt="Question image" />
+
+          <div class="timer-bar">
+            <div id="timerFill"></div>
+          </div>
+
+          <div id="answersGrid" class="answers-grid"></div>
+
+        </div>
+      </div>
+      <div id="solveScoreboard" class="solve-screen hidden">
+        <div class="scoreboard-card">
+          <h1>Quiz Finished 🎉</h1>
+
+          <div class="final-score">
+            <span>Your score</span>
+            <strong id="finalScore">0</strong>
+          </div>
+
+          <button id="backToSolveBtn" class="primary-btn">
+            Back to quizzes
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="editView" class="view">
+      <section class="createQuizView" class="view">
+        <button id="backToQuizzesBtn" class="back-btn">
+          ← Back to quizzes
+        </button>
+
+        <div class="create-quiz">
+
+          <h2>Create/Edit quiz</h2>
+          <input id="quizTitle" type="quiz" placeholder="Quiz title" />
+          <div class="toggle-row">
+            <span>Public quiz</span>
+            <label class="toggle">
+              <input type="checkbox" id="publicToggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="question-builder">
+
+            <h3>Add question</h3>
+            <textarea id="editQuestionText" placeholder="Question text"></textarea>
+
+            <div class="file-upload">
+              <span class="file-label">Question image (optional)</span>
+
+              <div class="file-row">
+                <label for="editQuestionImage" class="file-btn">📎 Upload image</label>
+                <span id="fileName" class="file-name">No image selected</span>
+                <button type="button" id="removeImageBtn" class="remove-btn" hidden> ✕ </button>
+              </div>
+
+              <img id="questionImagePreview" class="file-preview" alt="" />
+
+              <input id="editQuestionImage" type="file" accept="image/*" hidden />
+            </div>
+
+            <select id="questionType">
+              <option value="singel">Singel correct</option>
+              <option value="multiple">Multiple correct</option>
+              <option value="boolean">True/False</option>
+            </select>
+
+
+            <div id="optionsContainer"></div>
+            <div id="questionsTabs" class="question-tabs"></div>
+
+            <button id="saveQuestionBtn" class="primary-btn" style="display:none">Save Changes</button>
+
+            <button id="addQuestionBtn" class="primary-btn">Add Question</button>
+
+          </div>
+
+          <div id="questionsPreviewWrapper">
+            <div id="questionsPreview"></div>
+          </div>
+          <button id="saveQuizBtn" class="primary-btn">Save Quiz</button>
+
+        </div>
+      </section>
+    </section>
+
+
+  </main>
+  <div id="toast" class="toast"></div>
+
+  <script type="module" src="quizzes.js"></script>
+
+</body>
+
+</html>
